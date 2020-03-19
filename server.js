@@ -4,8 +4,8 @@ const colors = require('colors');
 const bodyParser = require('body-parser');
 
 const { Movie } = require('./sequelize/module/movie');
-// const { Cine } = require('./sequelize/module/cine');
-// const { Actores } = require('./sequelize/module/actores');
+const { Cine } = require('./sequelize/module/cine');
+const { Author } = require('./sequelize/module/author');
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,21 +16,42 @@ app.get('/', (req, res) => {
     res.send('Consult')
 });
 
+
+app.get('/movies', (req, res) => {
+    Movie.findAll().then((movie)=>{
+        res.json(movie);
+    });
+});
+
 // localhost:3000/movie?id=id
-app.get('/movie', (req, res) => {
+app.get('/movies', (req, res) => {
     let _id = req.query.id
     Movie.findAll({ where: { id: _id }}).then( movies => {
         res.json(movies);
     });
 });
 
-app.get('/actores', (req, res) => {
-    let _id = req.query.id
-    Actores.findAll({ where: { id: _id }}).then( actor => {
-        res.json(actor);
+//actor
+app.get('/authors', (req, res) => {
+    Author.findAll().then((author)=>{
+        res.json(author);
     });
 });
-app.get('/cine', (req, res) => {
+
+app.get('/authors', (req, res) => {
+    let _id = req.query.id
+    Author.findAll({ where: { id: _id }}).then( author => {
+        res.json(author);
+    });
+});
+
+app.get('/cines', (req, res) => {
+    Cine.findAll().then((cine)=>{
+        res.json(cine);
+    });
+});
+
+app.get('/cines', (req, res) => {
     let _id = req.query.id
     Cine.findAll({ where: { id: _id }}).then( cine => {
         res.json(cine);

@@ -5,13 +5,13 @@ class Cine extends Sequelize.Model {}
 
 Cine.init(
     {
-        //ID: { type: Sequelize.INTEGER },
         provincia: { type: Sequelize.STRING }, 
-        movie: { type: Sequelize.STRING}
+        movie: { type: Sequelize.STRING},
+        IdMovie: { type: Sequelize.INTEGER }
     },
     {
         sequelize: sqz,
-        modelName: 'movie'
+        modelName: 'cine'
     }
 );
 

@@ -6,19 +6,26 @@ class Movie extends Sequelize.Model {}
 
 Movie.init(
     {
-        //ID: { type: Sequelize.INTEGER }, el ID lo pone solo sequelize
+
         title: { type: Sequelize.STRING }, 
-        actor: { type: Sequelize.STRING},
+        author: { type: Sequelize.STRING},
         estreno: { type: Sequelize.BOOLEAN},
         cine: { type: Sequelize.INTEGER } 
     },
     {
-        // Esto solo se puede hacer con el nombre sequelize
         sequelize: sqz,
-        modelName: 'movie'
+       modelName: 'movie'
     }
 );
 
-Movie.sync({ force: true });
+Movie.sync({force:true}).then(()=>{
+    return Movie.create({
+        title: 'Soy Leyend',
+        author: 'Will Smitch',
+        estreno: 'false',
+        cine: '01'
+    });
+});
+
 
 module.exports = {Movie}
