@@ -1,31 +1,22 @@
-const express = require('express');
-const PORT = 3000;
-const colors = require('colors');
-const app = express();
-const morgan = require('morgan');
-const faker = require('faker');
+const Sequelize = require('sequelize');
+const sqz = require('./sequelize');
 
-app.use(morgan('dev'));
+class Movie extends Sequelize.Model {}
 
-let ID = 50;
-let tittleMovie = '';
-let actores = [];
+Movie.init(
+    {
+        ID: { type: Sequelize.INTEGER },
+        title: { type: Sequelize.STRING }, 
+        actor: { type: Sequelize.STRING},
+        estreno: { type: Sequelize.BOOLEAN},
+        cine: { type: Sequelize.INTEGER } 
+    },
+    {
+        sqz,
+        modelName: 'movie'
+    }
+);
 
+Movie.sync({ force: true });
 
-app.get('/', (req, res) => {
-    res.send('Consult')
-});
-for (let i = 0; i < ID; i++) {
-    tittleMovie= faker.name;
-
-app.get('/movie', (req, res) => {
-    res.json({
-        'ID': 'i',
-        'tittleMovie': 'tittleMovie'
-    });
-});
-}
-
-app.listen(PORT, () => {
-    console.log(`Port inicialized on: ${PORT}`.blue);
-});
+module.exports = {Movie}

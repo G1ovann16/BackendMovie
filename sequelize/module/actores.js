@@ -1,18 +1,21 @@
-const express = require('express');
-const PORT = 5000;
-const colors = require('colors');
-const app = express();
-const morgan = require('morgan');
-app.use(morgan('dev'));
+const Sequelize = require('sequelize');
+const sqz = require('./sequelize');
 
-app.get('/', (req, res) => {
-    res.send('Consult');
-});
-app.get('/actores', (req, res) => {
-    res.send('Actores');
-});
+class Actor extends Sequelize.Model {}
 
+Actor.init(
+    {
+        ID: { type: Sequelize.INTEGER },
+        name: { type: Sequelize.STRING }, 
+        lastName: { type: Sequelize.STRING},
+        movie: { type: Sequelize.STRING}
+    },
+    {
+        sqz,
+        modelName: 'movie'
+    }
+);
 
-app.listen(PORT, () => {
-    console.log(`Port inicialized on: ${PORT}`.green);
-});
+Actor.sync({ force: true });
+
+module.exports = {Actor}
