@@ -25,7 +25,7 @@ app.get('/movies', (req, res) => {
 
 // localhost:3000/movie?id=id
 app.get('/movies', (req, res) => {
-    let _id = req.query.id
+    let _id = req.query.id;
     Movie.findAll({ where: { id: _id }}).then( movies => {
         res.json(movies);
     });

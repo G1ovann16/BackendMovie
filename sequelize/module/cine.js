@@ -1,7 +1,13 @@
 const Sequelize = require('sequelize');
 const sqz = require('../sequelize');
+const faker = require('faker');
 
 class Cine extends Sequelize.Model {}
+const Movie = require('./movie');
+const times = require("lodash.times");
+const random = require("lodash.random");
+
+
 
 Cine.init(
     {
@@ -15,6 +21,12 @@ Cine.init(
     }
 );
 
-Cine.sync({ force: true });
+Cine.sync({force:true}).then(()=>{
+    Cine.bulkCreate(times(10, () =>({
+        provincia: `${faker.name.title()}`,
+        movie: `${faker.name.title()}`,
+        IdMovie: random(1, 100)
+    })))
+})
 
 module.exports = {Cine}
