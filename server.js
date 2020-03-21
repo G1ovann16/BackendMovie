@@ -73,7 +73,14 @@ app.get('/authors', (req, res) => {
 //cine
 
 app.get('/cines', (req, res) => {
-    if ((!req.query.name) && (!req.query.provincia)) {
+     if((req.query.estreno)){
+        const estreno = req.query.estreno;
+        Cine.findAll({ where: { estreno: estreno }}).then( cines => {
+            res.json((cines));
+        });
+        
+    }
+    else if ((!req.query.name) && (!req.query.provincia)) {
         Cine.findAll().then( cines => {
             res.json((cines));
         });
@@ -82,13 +89,18 @@ app.get('/cines', (req, res) => {
         Cine.findAll({ where: { name: name }}).then( cines => {
             res.json((cines));
         });
-    }else{
+    }else if(!req.query.name){
         const provincia = req.query.provincia;
         Cine.findAll({ where: { provincia: provincia }}).then( cines => {
             res.json((cines));
         });
     }
-
+    // else if((req.query.estreno='false') || (req.query.estreno='true')){
+    //     const estreno = req.query.estreno;
+    //     Cine.findAll({ where: { estreno: estreno }}).then( cines => {
+    //         res.json((cines));
+    //     });
+    
 });
 
 

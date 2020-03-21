@@ -2,7 +2,7 @@ const faker = require('faker');
 const Sequelize = require('sequelize');
 
 const sqz = require('../sequelize');
-const Author = require('./author');
+const {Author} = require('./author');
 class Movie extends Sequelize.Model {}
 const times = require("lodash.times");
 const random = require("lodash.random");
@@ -27,14 +27,16 @@ Movie.init(
     }
 );
 
-Movie.sync({force:true}).then(()=>{
-    Movie.bulkCreate(times(100, () =>({
-        title: `${faker.lorem.sentence()}`,
-        author: `${faker.name.findName()}`,
-        estreno: rand,
-        IdAuthor: random(1, 100),
-        IdCine: random(1, 10)
-    })))
+Movie.sync({force:false}).then(()=>
+{
+    // Movie.bulkCreate(times(10, () =>({
+    //     title: `${faker.lorem.sentence()}`,
+    //     author: `${faker.name.findName()}`,
+    //     estreno: rand,
+    //     IdAuthor: random(1, 5),
+    //     IdCine: random(1, 5)
+    // })))
 })
 
 module.exports = {Movie}
+console.log(Movie.title);

@@ -14,6 +14,7 @@ Cine.init(
         name: { type: Sequelize.STRING},
         provincia: { type: Sequelize.STRING }, 
         movie: { type: Sequelize.STRING},
+        estreno: { type: Sequelize.BOOLEAN},
         IdMovie: { type: Sequelize.INTEGER }
     },
     {
@@ -22,13 +23,14 @@ Cine.init(
     }
 );
 
-Cine.sync({force:true}).then(()=>{
-    Cine.bulkCreate(times(10, () =>({
-        name: `${faker.name.jobTitle()}`,
-        provincia: `${faker.name.title()}`,
-        movie: `${faker.name.title()}`,
-        IdMovie: random(1, 100)
-    })))
+Cine.sync({force:false}).then(()=>
+{
+    // Cine.bulkCreate(times(5, () =>({
+    //     name: `${faker.name.jobTitle()}`,
+    //     provincia: `${faker.name.title()}`,
+    //     movie: `${faker.name.title()}`,
+    //     IdMovie: random(1, 10)
+    // })))
 })
 
 module.exports = {Cine}
