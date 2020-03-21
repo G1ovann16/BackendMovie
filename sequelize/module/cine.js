@@ -11,6 +11,7 @@ const random = require("lodash.random");
 
 Cine.init(
     {
+        name: { type: Sequelize.STRING},
         provincia: { type: Sequelize.STRING }, 
         movie: { type: Sequelize.STRING},
         IdMovie: { type: Sequelize.INTEGER }
@@ -23,6 +24,7 @@ Cine.init(
 
 Cine.sync({force:true}).then(()=>{
     Cine.bulkCreate(times(10, () =>({
+        name: `${faker.name.jobTitle()}`,
         provincia: `${faker.name.title()}`,
         movie: `${faker.name.title()}`,
         IdMovie: random(1, 100)

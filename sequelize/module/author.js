@@ -22,7 +22,7 @@ Author.init(
     }
 );
 
-// Author.belongsTo(Movie);
+// Author.belongsTo(Author_Movie);
 // Movie.hasMany(Author);
 
 
