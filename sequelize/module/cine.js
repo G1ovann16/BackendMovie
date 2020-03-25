@@ -3,9 +3,11 @@ const sqz = require('../sequelize');
 const faker = require('faker');
 
 class Cine extends Sequelize.Model {}
-const Movie = require('./movie');
+const {Movie} = require('./movie');
 const times = require("lodash.times");
 const random = require("lodash.random");
+
+
 
 
 

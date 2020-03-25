@@ -20,8 +20,33 @@ _-Se necesitaría un dispositivo conectado a internet y que contenga una preferi
     })))      
 ``` 
 _En este pequeño código se crearará una base dedatos con elementos ficticios con el obejtivo de desarrollarla y que el usuario comprenda que está correctamente confeccionada la misma. Posterior a este codigo se elimina para que la base de datos mantenga los valores inicialmente generados._
-
-
+```
+app.get('/cines', (req, res) => {
+     if((req.query.estreno)){
+        const estreno = req.query.estreno;
+        Cine.findAll({ where: { estreno: estreno }}).then( cines => {
+            res.json((cines));
+        });
+        
+    }
+    else if ((!req.query.name) && (!req.query.provincia)) {
+        Cine.findAll().then( cines => {
+            res.json((cines));
+        });
+    } else if(!req.query.provincia) {
+        const name = req.query.name;
+        Cine.findAll({ where: { name: name }}).then( cines => {
+            res.json((cines));
+        });
+    }else if(!req.query.name){
+        const provincia = req.query.provincia;
+        Cine.findAll({ where: { provincia: provincia }}).then( cines => {
+            res.json((cines));
+        });
+    }
+});
+```
+_En este código se realiza las condiciones por filtros donde se puede realizar unos filtros de estrenos donde se solicita si es true o false_
 ### Instalación 🔧
 
 _No requiere de instalacion ya que posteriormente se vinculara con una parte de frontend por el cual el usuario sera capaz de visualizar su búsqueda. Aunque si es bueno destacar que con la dosiponibilidad de algún programa como POSTMAN sería posible consultar los datos de una manera muy sencilla._
@@ -45,3 +70,4 @@ Por favor lee el [CONTRIBUTING.md](https://gist.github.com/G1ovann16/BackendMovi
 ## Autores ✒️
 
 * **Giovanni Landaburo Del Arco** - *Trabajo Inicial* - [glandaburo](https://github.com/G1ovann16)
+

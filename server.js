@@ -2,10 +2,13 @@ const express = require('express');
 const PORT = 3000;
 const colors = require('colors');
 const bodyParser = require('body-parser');
+//const Sequelize =  require('sequelize');
 
 const { Movie } = require('./sequelize/module/movie');
 const { Cine } = require('./sequelize/module/cine');
 const { Author } = require('./sequelize/module/author');
+
+//class Authores extends Sequelize.Model {}
 
 const app = express();
 app.use(bodyParser.json());
@@ -36,6 +39,7 @@ app.get('/movies', (req, res) => {
 //actor
 
 app.get('/authors', (req, res) => {
+// Authores.Model.findAll({ $and: [{"title" : {$regex : `.*${req.query.name}.*`, $options: 'i'}}]}).limit(60)
     if ((!req.query.id) && (!req.query.movie) && (!req.query.name) && (!req.query.lastName)) {
         Author.findAll().then( authors => {
             res.json((authors));
@@ -96,14 +100,7 @@ app.get('/cines', (req, res) => {
             res.json((cines));
         });
     }
-    // else if((req.query.estreno='false') || (req.query.estreno='true')){
-    //     const estreno = req.query.estreno;
-    //     Cine.findAll({ where: { estreno: estreno }}).then( cines => {
-    //         res.json((cines));
-    //     });
-    
 });
-
 
 app.listen(PORT, () => {
     console.log(`Port inicialized on: ${PORT}`.blue);

@@ -7,6 +7,7 @@ class Author extends Sequelize.Model {}
 const times = require("lodash.times");
 const random = require("lodash.random");
 
+
 Author.init(
     {
         name: { type: Sequelize.STRING }, 

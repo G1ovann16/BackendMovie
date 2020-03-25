@@ -1,16 +1,15 @@
-const faker = require('faker');
 const Sequelize = require('sequelize');
 
 const sqz = require('../sequelize');
 const {Author} = require('./author');
 class Movie extends Sequelize.Model {}
+
+const faker = require('faker');
 const times = require("lodash.times");
 const random = require("lodash.random");
 let rand = Math.random()>=0.5;
 
 
-// Movie.belongsTo(Author);
-// Author.hasMany(Movie);
 
 
 Movie.init(
