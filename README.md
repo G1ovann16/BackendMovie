@@ -1,7 +1,7 @@
 
 ## Comenzando 🚀
 
-_En el presente proyecto se creará una base de datos con tres módulos , los cuales serian MOVIE, AUTHOR y CINE. Esttos módulos estarán relacionados y cada uno brindará la información necesaria requerida por el usuario._
+_En el presente proyecto se creará una base de datos con tres módulos , los cuales serian MOVIE, AUTHOR y CINE. Estos módulos estarán relacionados y cada uno brindará la información necesaria requerida por el usuario._
 
 Mira **Deployment** para conocer como desplegar el proyecto.
 
